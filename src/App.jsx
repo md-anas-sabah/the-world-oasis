@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import { QueryClient } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import Dashboard from "./pages/Dashboard";
@@ -9,6 +11,14 @@ import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 import AppLayout from "./ui/AppLayout";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000, // staleTime is basically the amount of time that the data in cache will stay fresh, here it is one minute
+    },
+  },
+});
 
 function App() {
   return (
