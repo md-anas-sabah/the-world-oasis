@@ -29,6 +29,8 @@ export async function createEditCabins(newCabin, id) {
     query = query.insert([{ ...newCabin, image: imagePath }]);
   }
 
+  // -------------------------------Unable to deal with this right now-------------------------
+
   // B) Edit
   if (id) {
     query = query
