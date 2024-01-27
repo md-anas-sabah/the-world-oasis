@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { createContext, useContext } from "react";
 import styled from "styled-components";
 
@@ -88,8 +86,10 @@ function Row({ children }) {
     </StyledRow>
   );
 }
+
 function Body({ data, render }) {
-  if (data.length === 0) return <Empty>No data to show at the moment</Empty>;
+  if (!data.length) return <Empty>No data to show at the moment</Empty>;
+
   return <StyledBody>{data.map(render)}</StyledBody>;
 }
 

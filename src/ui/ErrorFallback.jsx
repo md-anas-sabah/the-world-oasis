@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import Heading from "./Heading";
 import GlobalStyles from "../styles/GlobalStyles";
@@ -34,17 +32,16 @@ const Box = styled.div`
     color: var(--color-grey-500);
   }
 `;
-
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
     <>
       <GlobalStyles />
       <StyledErrorFallback>
         <Box>
-          <Heading as="h1">Something went wrong</Heading>
+          <Heading as="h1">Something went wrong 🧐</Heading>
           <p>{error.message}</p>
           <Button size="large" onClick={resetErrorBoundary}>
-            Try Again
+            Try again
           </Button>
         </Box>
       </StyledErrorFallback>

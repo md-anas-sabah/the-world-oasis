@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 const StyledFormRow = styled.div`
   display: grid;
@@ -36,17 +35,11 @@ const Error = styled.span`
   font-size: 1.4rem;
   color: var(--color-red-700);
 `;
+
 function FormRow({ label, error, children }) {
   return (
     <StyledFormRow>
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
-      {/* <Input
-        type="text"
-        id="name"
-        {...register("name", {
-          required: "This field is required",
-        })}
-      /> */}
       {children}
       {error && <Error>{error}</Error>}
     </StyledFormRow>

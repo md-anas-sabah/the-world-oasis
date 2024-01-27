@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
@@ -42,7 +41,7 @@ function SignupForm() {
             required: "This field is required",
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: "Provide a valid email address",
+              message: "Please provide a valid email address",
             },
           })}
         />
@@ -60,7 +59,7 @@ function SignupForm() {
             required: "This field is required",
             minLength: {
               value: 8,
-              message: "Passwrd needs a minimum of 8 characters",
+              message: "Password needs a minimum of 8 characters",
             },
           })}
         />
@@ -74,7 +73,7 @@ function SignupForm() {
           {...register("passwordConfirm", {
             required: "This field is required",
             validate: (value) =>
-              value === getValues().password || "Password need to match",
+              value === getValues().password || "Passwords need to match",
           })}
         />
       </FormRow>

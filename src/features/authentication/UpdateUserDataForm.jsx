@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
 
 import Button from "../../ui/Button";
@@ -19,14 +18,13 @@ function UpdateUserDataForm() {
     },
   } = useUser();
 
+  const { updateUser, isUpdating } = useUpdateUser();
+
   const [fullName, setFullName] = useState(currentFullName);
   const [avatar, setAvatar] = useState(null);
 
-  const { updateUser, isUpdating } = useUpdateUser();
-
   function handleSubmit(e) {
     e.preventDefault();
-
     if (!fullName) return;
     updateUser(
       { fullName, avatar },
@@ -49,6 +47,7 @@ function UpdateUserDataForm() {
       <FormRow label="Email address">
         <Input value={email} disabled />
       </FormRow>
+
       <FormRow label="Full name">
         <Input
           type="text"
@@ -58,6 +57,7 @@ function UpdateUserDataForm() {
           disabled={isUpdating}
         />
       </FormRow>
+
       <FormRow label="Avatar image">
         <FileInput
           id="avatar"
@@ -66,6 +66,7 @@ function UpdateUserDataForm() {
           disabled={isUpdating}
         />
       </FormRow>
+
       <FormRow>
         <Button
           type="reset"

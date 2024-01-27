@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -29,6 +28,7 @@ const StyledNavLink = styled(NavLink)`
     transition: all 0.3s;
   }
 
+  /* This works because react-router places the active class on the active NavLink */
   &:hover,
   &:active,
   &.active:link,

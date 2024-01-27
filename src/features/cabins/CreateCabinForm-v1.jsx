@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
 import Input from "../../ui/Input";
@@ -8,21 +6,22 @@ import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
-import { createCabins } from "../../services/apiCabins";
 import FormRow from "../../ui/FormRow";
+
+import { useForm } from "react-hook-form";
+import { createCabin } from "../../services/apiCabins";
 
 function CreateCabinForm() {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
-  const queryClient = useQueryClient();
   const { errors } = formState;
 
+  const queryClient = useQueryClient();
+
   const { mutate, isLoading: isCreating } = useMutation({
-    mutationFn: createCabins,
+    mutationFn: createCabin,
     onSuccess: () => {
-      toast.success("Cabin Successfully Created");
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
+      toast.success("New cabin successfully created");
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
       reset();
     },
     onError: (err) => toast.error(err.message),
@@ -31,6 +30,7 @@ function CreateCabinForm() {
   function onSubmit(data) {
     mutate({ ...data, image: data.image[0] });
   }
+
   function onError(errors) {
     // console.log(errors);
   }
@@ -48,7 +48,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow label="Maximum Capacity" error={errors?.maxCapacity?.message}>
+      <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
         <Input
           type="number"
           id="maxCapacity"
@@ -94,21 +94,22 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow
-        label="Description for cabin"
+        label="Description for website"
+        disabled={isCreating}
         error={errors?.description?.message}
       >
         <Textarea
           type="number"
           id="description"
-          disabled={isCreating}
           defaultValue=""
+          disabled={isCreating}
           {...register("description", {
             required: "This field is required",
           })}
         />
       </FormRow>
 
-      <FormRow label="Cabin Photo">
+      <FormRow label="Cabin photo">
         <FileInput
           id="image"
           accept="image/*"
